@@ -1,0 +1,60 @@
+version: '3.4'
+services:
+
+  #Nginx Service
+  G2:
+    image: nginx:alpine
+    container_name: G2
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8092:80"
+    networks:
+      - app-network
+    volumes:
+      - ./indexG2.html:/usr/share/nginx/html/index.html
+
+  G1:
+    image: nginx:alpine
+    container_name: G1
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8091:80"
+    networks:
+      - app-network
+    volumes:
+      - ./indexG1.html:/usr/share/nginx/html/index.html
+
+  F2:
+    image: nginx:alpine
+    container_name: F2
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8082:80"
+    networks:
+      - app-network
+    volumes:
+      - ./indexF2.html:/usr/share/nginx/html/index.html
+
+  F1:
+    image: nginx:alpine
+    container_name: F1
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+    volumes:
+      - ./indexF1.html:/usr/share/nginx/html/index.html
+
+    
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge 
+  
+
+
